@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Wena Sthandwa Sami ❤️</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+                opacity: 0;
+            }
+        }
+        
+        .heart {
+            position: absolute;
+            pointer-events: none;
+            animation: float 4s ease-in forwards;
+        }
+        
+        .pulse {
+            animation: pulse 5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        body {
+            overflow-x: hidden;
+            background-image: url("firstBackGround.jpg");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+            background-size: cover;
+            min-height: 100vh;
+        }
+        
+        .message-box {
+            background: rgba(192, 191, 191, 0.273);
+            backdrop-filter: blur(1px);
+            box-shadow: 0 10px 30px rgb(0, 0, 0);
+        }
+    </style>
+</head>
+<body class="font-sans flex items-center justify-center p-4">
+    <div id="hearts-container"></div>
+    
+    <div class="message-box pulse max-w-2xl w-full rounded-3xl p-8 md:p-12 text-center relative overflow-hidden">
+        <div class="absolute -top-20 -right-20 w-40 h-40 bg-pink-200 rounded-full opacity-20"></div>
+        <div class="absolute -bottom-20 -left-20 w-40 h-40 bg-pink-300 rounded-full opacity-20"></div>
+        
+        <h1 class="text-4xl md:text-5xl font-bold text-blue-600 mb-6">
+            <i class="fas fa-heart mr-2"></i> Asanda Wami <i class="fas fa-heart ml-2"></i>
+        </h1>
+        
+        <div class="text-lg md:text-xl text-black-700 mb-8 leading-relaxed">
+            <p class="mb-4">
+                 Sibeko, Maziya,
+                 Mcusi omhlophe izandla nezinyawo,
+                 Wena Wenjiki emnyama yasoHlelo
+            </p>
+            <p class="mb-4">
+                Uthando lwethu alusafani nakuqala,
+                Senginokususa udweshu olungenasidingo ngehloso yokuhlola izinga lothando lwethu,
+                Andile ngisakuthanda, ngisakudinga futhi ngiyakukhumbula,
+                Khumbula phela ngitshele abantu ukuthi kuwena ngibona incazelo yothando Lwami,
+                Empeleni nguwena oqukethe injabulo yami,
+                Sthandwa sami,
+                Ngiyakuhanda nawe uyangithanda futhi siyathandana,
+                Yebo okwamanje izinkinga ziningi kodwa Uthando lwemu lumi ngenhla kakhulu,
+                Ngizolwa mina qobo lwami ngilwele mina, ngilwele wena ngilwele naloku esesikwakhile sobabili,
+                IsiZulu sithi sifunda ngamaphutha,
+                Useyiyona imbali yokhethelo emehlweni ami, loko angekekwashintsha
+            </p>
+            <p>
+                
+            </p>
+            <i class="fas fa-heart mr-2"></i> Mcusi uyakuthanda uMzilankatha <i class="fas fa-heart ml-2"></i>
+        </div>
+        
+        <div class="flex justify-center space-x-4 mb-8">
+            <div class="w-16 h-16 rounded-full bg-red-100 flex items-center justify-center text-red-500 text-2xl">
+                <i class="fas fa-heartbeat"></i>
+            </div>
+            <div class="w-16 h-16 rounded-full bg-red-100 flex items-center justify-center text-red-500 text-2xl">
+                <i class="fas fa-heartbeat"></i>
+            </div>
+            <div class="w-16 h-16 rounded-full bg-red-100 flex items-center justify-center text-red-500 text-2xl">
+                <i class="fas fa-heartbeat"></i>
+            </div>
+        </div>
+        
+        <button id="heart-btn" class="px-8 py-3 bg-gradient-to-r from-blue-500 to-red-500 text-white rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+            Thinta Inhliziyo Yami <i class="fas fa-heart ml-2"></i>
+        </button>
+        
+        <div class="mt-8 text-sm text-black-700">
+            <p>Angikuthengi ngaloku kodwa ngikukhumbuza umuntu owamukhetha</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const btn = document.getElementById('heart-btn');
+            const container = document.getElementById('hearts-container');
+            
+            // Create hearts on button click
+            btn.addEventListener('click', function() {
+                createHearts(20);
+            });
+            
+            // Also create hearts when clicking anywhere on the page
+            document.addEventListener('click', function(e) {
+                if (e.target !== btn) {
+                    createHearts(5);
+                }
+            });
+            
+            // Create initial floating hearts
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    createRandomHeart();
+                }, i * 300);
+            }
+            
+            function createHearts(count) {
+                for (let i = 0; i < count; i++) {
+                    setTimeout(() => {
+                        createHeartAtPosition(
+                            Math.random() * window.innerWidth,
+                            Math.random() * window.innerHeight
+                        );
+                    }, i * 100);
+                }
+            }
+            
+            function createRandomHeart() {
+                const heart = document.createElement('div');
+                heart.className = 'heart text-pink-500 text-2xl';
+                heart.innerHTML = Math.random() > 0.5 ? '❤️' : '💖';
+                
+                const size = Math.random() * 20 + 10;
+                heart.style.fontSize = `${size}px`;
+                
+                const left = Math.random() * window.innerWidth;
+                const top = window.innerHeight + 50;
+                
+                heart.style.left = `${left}px`;
+                heart.style.top = `${top}px`;
+                
+                container.appendChild(heart);
+                
+                setTimeout(() => {
+                    heart.remove();
+                }, 4000);
+            }
+            
+            function createHeartAtPosition(x, y) {
+                const heart = document.createElement('div');
+                heart.className = 'heart text-pink-500 text-2xl';
+                heart.innerHTML = Math.random() > 0.5 ? '❤️' : '💖';
+                
+                const size = Math.random() * 30 + 15;
+                heart.style.fontSize = `${size}px`;
+                
+                heart.style.left = `${x}px`;
+                heart.style.top = `${y}px`;
+                
+                container.appendChild(heart);
+                
+                setTimeout(() => {
+                    heart.remove();
+                }, 4000);
+            }
+        });
+    </script>
+</body>
+</html>
